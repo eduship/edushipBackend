@@ -33,19 +33,3 @@ exports.find_organisation_by_id = function(req, res, next) {
       res.json(organisation);
     });
 };
-
-//List of all Users
-exports.list_user = function(req, res, next){
-    User.find(function (req, users){
-        if (err) return next(err);
-        res.json(users);
-    });
-};
-
-//find User by ID
-exports.find_user_by_id = function(req, res, next){
-    User.findById(req.params.id, function (err, user){
-        if (err) return next(err);
-        res.json(user);
-    });
-};

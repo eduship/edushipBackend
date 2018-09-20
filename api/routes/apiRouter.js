@@ -37,18 +37,5 @@ router.post('/organisation/create', auth.authenticate('basic', { session: false}
 //POST Delete Organisation
 router.post('/organistaion/cdelete/:id', auth.authenticate('basic', { session: false}), write_controller.delete_organisation);
 
-/*User Routes*/
-
-//GET List of all users
-router.get('/user/all', auth.authenticate('basic', { session: false}), read_controller.list_user);
-
-//GET Find user by Id
-router.get('/user/:id', auth.authenticate('basic', { session: false}), read_controller.find_user_by_id);
-
-//POST Create user
-router.post('/user/create', auth.authenticate('basic', { session: false}), write_controller.create_user);
-
-//POST Delete user
-router.post('/user/delete/:id', auth.authenticate('basic', { session: false}), write_controller.delete_user);
 
 module.exports = router;
