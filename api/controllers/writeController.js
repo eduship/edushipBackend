@@ -28,21 +28,6 @@ exports.delete_event = function(req, res, next) {
     });
 };
 
-//Create User
-exports.create_user = function(req, res, next) {
-  Event.create(req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-};
-
-//Delete User
-exports.delete_user = function(req, res, next) {
-  Event.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-};
 
 //Create Organisation
 exports.create_organisation = function(req, res, next) {
