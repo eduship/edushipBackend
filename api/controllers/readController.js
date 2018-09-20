@@ -1,4 +1,4 @@
-var Event = require('../models/event');
+var Event = require('../../shared/models/event');
 
 //List of all events
 exports.list_event = function(req, res, next){

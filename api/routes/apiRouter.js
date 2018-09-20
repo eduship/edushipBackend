@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
-var auth = require('../auth.js');
+var auth = require('../auth/api_auth');
 
 var read_controller = require('../controllers/readController');
 var write_controller = require('../controllers/writeController');
@@ -9,7 +9,7 @@ var write_controller = require('../controllers/writeController');
 //read Routes
 
 //GET List of all events
-router.get('/', read_controller.list_event);
+router.get('/all', read_controller.list_event);
 
 //GET Find event by Id
 router.get('/:id', read_controller.find_event_by_id);

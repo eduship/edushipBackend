@@ -1,4 +1,4 @@
-var Event = require('../models/event');
+var Event = require('../../shared/models/event');
 
 //Create Event
 exports.create_event = function(req, res, next) {
