@@ -6,7 +6,7 @@ var auth = require('../auth/api_auth');
 var read_controller = require('../controllers/readController');
 var write_controller = require('../controllers/writeController');
 
-//read Routes
+/*Event Routes*/
 
 //GET List of all events
 router.get('/all', read_controller.list_event);
