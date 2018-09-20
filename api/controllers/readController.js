@@ -44,8 +44,8 @@ exports.list_user = function(req, res, next){
 
 //find User by ID
 exports.find_user_by_id = function(req, res, next){
-    User.find(function (req, users){
+    User.findById(req.params.id, function (err, user){
         if (err) return next(err);
-        res.json(users);
+        res.json(user);
     });
 };
