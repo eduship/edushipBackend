@@ -1,6 +1,5 @@
 var Event = require('../../shared/models/event');
 var Organisation = require('../../shared/models/organisation');
-var User = require('../../shared/models/user');
 
 //List of all events
 exports.list_event = function(req, res, next){

@@ -10,9 +10,9 @@ var api = require('./routes/apiRouter');
 var app = express();
 
 //WEB SERVER:
-app.set('port', 9000);
+app.set('port', 5000);
 var server = http.createServer(app);
-server.listen(9000);
+server.listen(5000);
 server.on('error', onError);
 
 function onError(error) {

@@ -5,14 +5,14 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var http = require('http');
 
-var login = require('./routes/loginRouter');
+var api = require('./routes/apiRouter');
 
 var app = express();
 
 //WEB SERVER:
-app.set('port', 8080);
+app.set('port', 6000);
 var server = http.createServer(app);
-server.listen(8080);
+server.listen(6000);
 server.on('error', onError);
 
 function onError(error) {
@@ -25,7 +25,7 @@ function onError(error) {
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { useMongoClient: true, promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection succesful server started on port 8080'))
+  .then(() =>  console.log('connection succesful server started on port 9000'))
   .catch((err) => console.error(err));
 
 app.use(logger('dev'));
@@ -34,7 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', login);
+app.use('/', api);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
