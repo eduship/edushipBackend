@@ -25,7 +25,7 @@ function onError(error) {
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { useMongoClient: true, promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection succesful server started on port 9000'))
+  .then(() =>  console.log('connection succesful server started on port 6000'))
   .catch((err) => console.error(err));
 
 app.use(logger('dev'));

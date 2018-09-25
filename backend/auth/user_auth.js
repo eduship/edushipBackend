@@ -1,6 +1,6 @@
 var passport = require('passport')
 var Strategy = require('passport-local').Strategy;
-var Organisation = require('../../shared/models/organisation');
+var Organisation = require('../../shared/models/organisationLogin');
 var bcrypt = require('bcryptjs');
 
 // using the local strategy with passport

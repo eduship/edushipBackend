@@ -18,3 +18,5 @@ router.get('/organisation/all', read_controller.list_organisation);
 
 //GET Find event by Id
 router.get('/organisation/:id', read_controller.find_organisation_by_id);
+
+module.exports = router;

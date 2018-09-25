@@ -17,4 +17,4 @@ var OrganisationSchema = new Schema(
   }
 });
 
-module.exports = mongoose.model('Organisation', OrganisationSchema);
+module.exports = mongoose.model('OrganisationLogin', OrganisationSchema);

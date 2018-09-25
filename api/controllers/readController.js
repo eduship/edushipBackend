@@ -1,5 +1,5 @@
 var Event = require('../../shared/models/event');
-var Organisation = require('../../shared/models/organisation');
+var OrganisationConfirm = require('../../shared/models/organisationRead');
 
 //List of all events
 exports.list_event = function(req, res, next){
@@ -19,7 +19,7 @@ exports.find_event_by_id = function(req, res, next) {
 
 //List of all Organisations
 exports.list_organisation = function(req, res, next){
-    Organisation.find(function (req, organisations){
+    OrganisationConfirm.find(function (err, organisations){
         if (err) return next(err);
         res.json(organisations);
     });
@@ -27,7 +27,7 @@ exports.list_organisation = function(req, res, next){
 
 //Find Organisation by ID
 exports.find_organisation_by_id = function(req, res, next) {
-    Organisation.findById(req.params.id, function (err, organisation) {
+    OrganisationConfirm.findById(req.params.id, function (err, organisation) {
       if (err) return next(err);
       res.json(organisation);
     });

@@ -10,6 +10,11 @@ exports.confirm_organisation = function(req, res, next){
     var organisation = {
         name: req.params.name,
         hash: password_hash,
-        email: re.params.email
+        email: re.params.email,
+        events: []
     };
+
+    Organisation.create(organisation, function(req, res, next){
+        if (err) return next(err);
+    });
 }
