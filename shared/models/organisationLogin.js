@@ -7,7 +7,7 @@ var OrganisationSchema = new Schema(
     name: {type: String, required: true, max: 100},
     hash: {type: String, required: true, max: 100},
     email: {type: String, required: true, max: 50},
-    events: [Schema.Types.ObjectId]
+    events: [{type: Schema.Types.ObjectId, ref: 'Event'}]
   }, {
   toObject: {
   virtuals: true

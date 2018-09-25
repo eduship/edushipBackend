@@ -8,12 +8,12 @@ passport.use(
     new Strategy(
         {
             // using custom field names
-            usernameField: 'user',
+            usernameField: 'email',
             passwordField: 'pass'
         },
         // login method
-        function (username, password, cb) {
-            Organisation.findOne({name: username}, function(err, organisation){
+        function (mail, password, cb) {
+            Organisation.findOne({email: mail}, function(err, organisation){
                 if (err) {return cb(null, false); }
                 bcrypt.compare(password, organisation.hash, function(err, res){
                     if(res){
