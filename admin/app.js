@@ -7,7 +7,7 @@ var http = require('http');
 var session = require('express-session');
 var auth = require('./auth/admin_auth.js');
 
-var testRouter = require('./routes/adminRouter');
+var adminRouter = require('./routes/adminRouter');
 
 var app = express();
 
@@ -27,8 +27,12 @@ function onError(error) {
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { useMongoClient: true, promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection succesful server started on port 9000'))
+  .then(() =>  console.log('connection succesful server started on port 4000'))
   .catch((err) => console.error(err));
+
+//setup view engine 
+app.set('views', path.join(__dirname, 'template'));
+app.set('view engine', 'ejs');
 
 //Setup the standard stuff  
 app.use(logger('dev'));
@@ -57,7 +61,7 @@ app.use(auth.initialize());
 app.use(auth.session());
 
 //Setup Routes
-app.use('/', testRouter);
+app.use('/', adminRouter);
 
 //login POST Route has to be manually set in app.js
 app.post('/login',
@@ -69,7 +73,7 @@ app.post('/login',
  
     // end up at / if login works
     function (req, res) {
-        res.redirect('/welcome');
+        res.redirect('/');
     }
 );
 

@@ -2,12 +2,10 @@ var express = require('express');
 var router = express.Router();
 var auth = require('./../auth/admin_auth');
 
-var admin_controller = require('./../controllers/testController');
+var template_controller = require('../controllers/serveTemplateController');
 
-router.get('/login', admin_controller.serve_login);
+router.get('/', template_controller.get_dashboard);
 
-router.get('/welcome', admin_controller.serve_welcome);
-
-router.get('/test', admin_controller.serve_test2);
+router.get('/login', template_controller.get_login);
 
 module.exports = router;
