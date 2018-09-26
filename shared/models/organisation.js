@@ -5,6 +5,7 @@ var Schema = mongoose.Schema;
 var OrganisationSchema = new Schema(
   {
     name: {type: String, required: true, max: 100},
+    hash: {type: String, required: true, max: 100},
     email: {type: String, required: true, max: 50},
     events: [{type: Schema.Types.ObjectId, ref: 'Event'}]
   }, {
@@ -16,4 +17,4 @@ var OrganisationSchema = new Schema(
   }
 });
 
-module.exports = mongoose.model('organisationsRead', OrganisationSchema);
+module.exports = mongoose.model('Organisation', OrganisationSchema);
