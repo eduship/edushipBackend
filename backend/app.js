@@ -12,9 +12,9 @@ var backendRouter = require('./routes/backendRouter');
 var app = express();
 
 //WEB SERVER:
-app.set('port', 4000);
+app.set('port', 7000);
 var server = http.createServer(app);
-server.listen(4000);
+server.listen(7000);
 server.on('error', onError);
 
 function onError(error) {
@@ -27,7 +27,7 @@ function onError(error) {
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { useMongoClient: true, promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection succesful server started on port 4000'))
+  .then(() =>  console.log('connection succesful server started on port 6000'))
   .catch((err) => console.error(err));
 
 //setup view engine 
@@ -60,32 +60,21 @@ app.use(session(
 app.use(auth.initialize());
 app.use(auth.session());
 
-//Setup Routes
 app.use('/', backendRouter);
 
 //login POST Route has to be manually set in app.js
-//login POST Route has to be manually set in app.js
 app.post('/login',
-  auth.authenticate('local', {
-    // redirect back to /login
-    // if login fails
-    failureRedirect: '/login'
-  }),
-  (req, res) => {
+    auth.authenticate('local', {
+        // redirect back to /login
+        // if login fails
+        failureRedirect: '/login'
+    }),
+ 
     // end up at / if login works
-    res.redirect('/home');
-  }
+    function (req, res) {
+        res.redirect('/');
+    }
 );
-
-
-app.get('/home', function(req, res, next){
-  console.log(req.user)
-  if(req.user){
-    res.send('You are logged in');
-  } else {
-    res.redirect('/login');
-  }
-});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

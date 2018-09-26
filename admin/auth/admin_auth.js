@@ -20,6 +20,7 @@ passport.use(
         },
         // login method
         function (username, password, cb) {
+            console.log("auth");
             if (username === user.username && bcrypt.compareSync(password.toString(), user.password)) {
                 return cb(null, user);
  
