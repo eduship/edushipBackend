@@ -14,7 +14,6 @@ passport.use(
         },
         // login method
         function (username, password, cb) {
-            console.log("auth");
             Organisation.findOne({'email': username}, function(err, organisation) {
                 if (err) {return cb(err);}
                 if(bcrypt.compareSync(password.toString(), organisation.hash)){

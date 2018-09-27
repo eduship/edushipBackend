@@ -27,7 +27,7 @@ function onError(error) {
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { useMongoClient: true, promiseLibrary: require('bluebird') })
-  .then(() =>  console.log('connection succesful server started on port 6000'))
+  .then(() =>  console.log('connection succesful server started on port 7000'))
   .catch((err) => console.error(err));
 
 //setup view engine 
@@ -86,6 +86,7 @@ app.use(function(req, res, next) {
     // set locals, only providing error in development
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
+    console.log(err);
   
     // render the error page
     res.status(err.status || 500);

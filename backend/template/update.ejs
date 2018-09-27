@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Update Event</title>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Bootstrap core CSS -->
+  <link href="../css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="../css/mdb.min.css" rel="stylesheet">
+  <!-- Your custom styles (optional) -->
+  <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Default form login -->
+<div class='container w-50 p-3'>
+    <form class="text-center border border-light p-5" action='/update/<%= event.id %>' method='post'>
+
+        <p class="h4 mb-4">Update Event <%= event.id %></p>
+    
+        <!-- Username -->
+        <input name='name' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Name" value="<%= event.name %>">
+    
+        <!-- Password -->
+        <input name='date' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Datum" value="<%= event.date %>">
+
+        <!-- Username -->
+        <input name='adress' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Adresse" value="<%= event.placeAdress %>">
+    
+        <!-- Password -->
+        <input name='time' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Zeit" value="<%= event.time %>">
+
+        <!-- Username -->
+        <input name='link' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Link" value="<%= event.link %>">
+    
+        <!-- Password -->
+        <input name='level' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Level" value="<%= event.level %>">
+
+        <!-- Username -->
+        <input name='costs' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Kosten" value="<%= event.costs %>">
+    
+        <!-- Password -->
+        <input name='age' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Alter" value="<%= event.age %>">
+
+        <!-- Username -->
+        <input name='tags' type="text" id="defaultLoginFormFirstName" class="form-control mb-4" placeholder="Tags" value="<%= event.tags %>">
+
+             <!-- Message -->
+        <div class="form-group">
+          <textarea name='description' class="form-control rounded-0" id="exampleFormControlTextarea2" rows="3" placeholder="Beschreibung"><%= event.description %></textarea>
+        </div>
+    
+        <!-- Sign in button -->
+        <button class="btn btn-info btn-block my-4" type="submit">Update Event</button>
+    
+    </form>
+</div>
+<!-- Default form login -->
+
+  <!-- SCRIPTS -->
+  <!-- JQuery -->
+  <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+  <!-- Bootstrap tooltips -->
+  <script type="text/javascript" src="../js/popper.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="../js/mdb.min.js"></script>
+</body>
+
+</html>

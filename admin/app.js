@@ -51,7 +51,7 @@ app.use(session(
     saveUninitialized: false,
     cookie: {
       //Session lasts 30sek
-      maxAge: 15000
+      maxAge: 15000000
     }
   }
 ));

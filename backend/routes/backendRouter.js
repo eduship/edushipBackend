@@ -17,11 +17,22 @@ router.post('/register', organisation_controller.post_register_organisation);
 //GET Login Form
 router.get('/login', user_controller.get_login);
 
-//GET Logout Page
-router.get('/logout', organisation_controller.get_logout);
-
+//GEt event create page
 router.get('/create', organisation_controller.get_create_event);
 
+//POST create Event
 router.post('/create', organisation_controller.post_create_event);
+
+//GET update form
+router.get('/update/:id', organisation_controller.get_update_event);
+
+//POST update event form
+router.post('/update/:id', organisation_controller.post_update_event);
+
+//GET delete element
+router.get('/delete/:id', organisation_controller.get_delete_event);
+
+//GET Logout Page
+router.get('/logout', organisation_controller.get_logout);
 
 module.exports = router;
