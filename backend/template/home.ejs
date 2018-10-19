@@ -8,9 +8,9 @@
     <% for(var i=0; i<events.length; i++){ %>
         <div>
             <label>Name: </label> <%= events[i].name %>
-            <label>ID: </label> <%= events[i] %>
-            <a href="/update/<%= events[i] %>">Update</a> <span>   </span>
-            <a href="/delete/<%= events[i] %>">Delete</a>
+            <label>ID: </label> <%= events[i]._id %>
+            <a href="/update/<%= events[i]._id %>">Update</a> <span>   </span>
+            <a href="/delete/<%= events[i]._id %>">Delete</a>
         </div>
     <% } %>
     <br />

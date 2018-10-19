@@ -6,7 +6,7 @@ var OrganisationSchema = new Schema(
   {
     name: {type: String, required: true, max: 100},
     email: {type: String, required: true, max: 50},
-    link: {type: String, required: false, max: 100},
+    link: {type: String, required: false, max: 200},
     description: {type: String, required: true, max: 10000}
   }, {
   toObject: {

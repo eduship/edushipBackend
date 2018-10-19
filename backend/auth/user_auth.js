@@ -30,8 +30,10 @@ passport.serializeUser(function (user, cb) {
 });
  
 passport.deserializeUser(function (id, cb) {
-    Organisation.findById(id, function(err, user){
-        cb(null, user);
+    Organisation.findById(id)
+    .populate('events')
+    .exec(function(err, res){
+        return cb(null, res);
     });
 });
 

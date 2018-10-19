@@ -6,7 +6,6 @@ var Organisation = require('../../shared/models/organisation');
 exports.get_home = function(req, res, next){
     if(req.user){
         res.render('home', {events: req.user.events});
-        console.log(req.user);
     } else {
         res.redirect('/login');
     }
@@ -62,11 +61,8 @@ exports.post_create_event = function(req, res, next){
     if (req.user){
         //set organisation param 
         req.body.organisation = req.user.id;
-        console.log(req.body);
         //create Event Object
         var ev = new Event(req.body);
-
-        console.log(ev);
 
         //save Event Object
         ev.save(function(err){
@@ -89,12 +85,13 @@ exports.post_create_event = function(req, res, next){
 //get update form if req.user and user has the persmission to edit this event
 exports.get_update_event = function(req, res, next){
     if(req.user){
-        //check if id is in req.user.events
-        if (req.user.events.indexOf(req.params.id) >= 0){
+        //check if id is in id_array (array of organisation event ids) 
+        id_array = f_get_event_array(req);
+
+        if (id_array.indexOf(req.params.id) >= 0){
         //find event to render data in template
         Event.findById(req.params.id, function(err, ev){
             if(err) return next(err);
-            console.log(ev);
             res.render('update', {event: ev});
         });
         //redirect if event does not belong to user
@@ -110,8 +107,9 @@ exports.get_update_event = function(req, res, next){
 //post event update form
 exports.post_update_event = function(req, res, next){
     if(req.user){
+        id_array = f_get_event_array(req);
         //check if event is in req.user.events
-        if (req.user.events.indexOf(req.params.id) >= 0){
+        if (id_array.indexOf(req.params.id) >= 0){
             //update event
             Event.findByIdAndUpdate(req.params.id, req.body, function(err){
                 if (err) return next(err);
@@ -128,11 +126,13 @@ exports.post_update_event = function(req, res, next){
 exports.get_delete_event = function(req, res, next){
     if(req.user){
 
-        var i = req.user.events.indexOf(req.params.id);
+        id_array = f_get_event_array(req);
+
+        var i = id_array.indexOf(req.params.id);
 
         if (i >= 0){
             //Remove element from event.user.events
-            req.user.events.splice(i, i+1);
+            id_array.splice(i, i+1);
 
             //Update Organisation
             Organisation.findByIdAndUpdate(req.user.id, req.user, function(err){
@@ -140,8 +140,6 @@ exports.get_delete_event = function(req, res, next){
             });
 
             //Delete Event
-            console.log(Event);
-
             Event.findByIdAndDelete(req.params.id, function(err){
                 if (err) return next(err);
             });
@@ -153,3 +151,12 @@ exports.get_delete_event = function(req, res, next){
         res.redirect('/login');
     }
 };
+
+/*** function for array of event ids ***/
+function f_get_event_array(req){
+    id_array = [];
+    for(var i = 0; i < req.user.events.length; i++){
+        id_array.push(req.user.events[i].id);
+    }
+    return id_array;
+}

@@ -1,18 +1,34 @@
 var bcrypt = require('bcryptjs');
-var Organisation = require('../../shared/models/organisationConfirm');
+var Organisation = require('../../shared/models/organisation');
 
 const hashRounds = 10;
 
-exports.confirm_organisation = function(req, res, next){
+exports.get_organisation_detail = function(req, res, next){
+    if(req.user){
+        res.render('detail');
+    } else {
+        res.redirect('/login');
+    }
+}
+
+exports.get_organisation_list = function(req, res, next){
+    if(req.user){
+        res.render('list');
+    } else {
+        res.redirect('/login');
+    }
+}
+
+exports.post_confirm_organisation = function(req, res, next){
     //generate password hash
     var password_hash = bcrypt.hashSync(req.params.password, hashRounds);
     
-    var organisation = {
+    var organisation = new Organisation({
         name: req.params.name,
         hash: password_hash,
-        email: re.params.email,
+        email: req.params.email,
         events: []
-    };
+    });
 
     Organisation.create(organisation, function(req, res, next){
         if (err) return next(err);
