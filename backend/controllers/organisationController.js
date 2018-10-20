@@ -38,6 +38,8 @@ exports.post_register_organisation = function(req, res, next){
         //create OrganisationConfirm Object
         var conf = new OrganisationConfirm(req.body);
 
+        console.log(conf);
+
         //save OC Object
         conf.save(function(err){
             if(err) return next(err);

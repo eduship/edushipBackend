@@ -13,6 +13,9 @@ var EventSchema = new Schema(
     link: {type: String, required: false, max: 400},
     level: {type: String, required: false, max: 20},
     costs: {type: String, required: false, max: 40},
+    approach : {type: String, required: false, max: 40},
+    hotel : {type: String, required: false, max: 40},
+    food : {type: String, required: false, max: 40},
     age: {type: String, required: false, max: 10},
     tags: {type: String, required: false, max: 100},
 

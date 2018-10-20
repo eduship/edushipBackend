@@ -74,13 +74,13 @@
             </a>
 
             <div class="list-group list-group-flush">
-                <a href="/" class="list-group-item active waves-effect">
+                <a href="#" class="list-group-item active waves-effect">
                     <i class="fa fa-pie-chart mr-3"></i>Dashboard
                 </a>
                 <a href="#" class="list-group-item list-group-item-action waves-effect">
                     <i class="fa fa-user mr-3"></i>Profile</a>
-                <a href="/list" class="list-group-item list-group-item-action waves-effect">
-                    <i class="fa fa-table mr-3"></i>Data</a>
+                <a href="#" class="list-group-item list-group-item-action waves-effect">
+                    <i class="fa fa-table mr-3"></i>Tables</a>
                 <a href="#" class="list-group-item list-group-item-action waves-effect">
                     <i class="fa fa-map mr-3"></i>Maps</a>
                 <a href="#" class="list-group-item list-group-item-action waves-effect">
@@ -107,6 +107,10 @@
                         <a href="https://compare3d.de" target="_blank">Home Page</a>
                         <span>/</span>
                         <span>Dashboard</span>
+                        <span>/</span>
+                        <span>List</span>
+                        <span>/</span>
+                        <span>Detail</span>
                     </h4>
 
                 </div>
@@ -138,76 +142,7 @@
 
             </div>
 
-            <!--Grid row-->
-            <div class="row wow fadeIn">
-
-                <!--Grid column-->
-                <div class="col-md-9 mb-4">
-
-                    <!--Card-->
-                    <div class="card">
-
-                        <!-- Card header -->
-                        <div class="card-header text-center">
-                            Site Usage (insert Data from Google Analytics)
-                        </div>
-
-                        <!--Card content-->
-                        <div class="card-body">
-            
-                            <canvas id="usageChart"></canvas>
-            
-                        </div>
-            
-                    </div>
-                    <!--/.Card-->
-                    
-                </div>
-
-                <!--Grid column-->
-                <div class="col-md-3 mb-4">
-
-                        <!--Card-->
-                        <div class="card mb-4">
-    
-                            <!-- Card header -->
-                            <div class="card-header text-center">
-                                CPU Usage
-                            </div>
-    
-                            <!--Card content-->
-                            <div class="card-body">
-    
-                                <canvas id="cpuChart"></canvas>
-                                
-                                <p class="text-center" style="margin-top:17px">Usage: <%= usedcpu %> %</p>
-                            </div>
-    
-                        </div>
-                        <!--/.Card-->    
-                                            <!--Card-->
-                    <div class="card mb-4">
-
-                            <!-- Card header -->
-                            <div class="card-header text-center">
-                                RAM Usage
-                            </div>
-    
-                            <!--Card content-->
-                            <div class="card-body">
-    
-                                <canvas id="ramChart"></canvas>
-                                
-                                <p class="text-center" style="margin-top:17px">Usage: <%= 100 - freemem %> %</p>
-                            </div>
-    
-                        </div>
-                        <!--/.Card-->
-                </div>
-                <!--Grid column-->
-
-            </div> 
-            <!--Grid row-->
+           
             
         </div>
     </main>
@@ -292,81 +227,7 @@
 
     <!--insert Chart Code-->
     <script>
-        var ctu = document.getElementById('usageChart').getContext('2d');
-        var usageChart = new Chart(ctu, {
-            type: 'bar',
-            data: {
-            labels: ["Mo", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"],
-            datasets: [{
-                label: '# of Visits',
-                data: [12, 19, 3, 5, 2, 3, 8],
-                backgroundColor: [
-                    'rgb(41, 82, 163, 0.2)',
-                    'rgb(41, 82, 163, 0.2)',
-                    'rgb(41, 82, 163, 0.2)',
-                    'rgb(41, 82, 163, 0.2)',
-                    'rgb(41, 82, 163, 0.2)',
-                    'rgb(41, 82, 163, 0.2)',
-                    'rgb(41, 82, 163, 0.2)'
-                ],
-                borderColor: [
-                    'rgb(41, 82, 163, 0.8)',
-                    'rgb(41, 82, 163, 0.8)',
-                    'rgb(41, 82, 163, 0.8)',
-                    'rgb(41, 82, 163, 0.8)',
-                    'rgb(41, 82, 163, 0.8)',
-                    'rgb(41, 82, 163, 0.8)',
-                    'rgb(41, 82, 163, 0.8)'
-                ],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero:true
-                    }
-                }]
-            }
-        }
-    });
-
-    var ctc = document.getElementById('cpuChart').getContext('2d');
-    var cpuChart = new Chart(ctc, {
-            type: 'doughnut',
-            data: {
-                labels: ["In use", "idle"],
-                datasets: [
-                    {
-                        data: [<%= Math.round(usedcpu) %>, <%= 100 - Math.round(usedcpu) %>],
-                        backgroundColor: ["#F7464A", "#85e085"],
-                        hoverBackgroundColor: ["#FF5A5E", "#5cd65c"]
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
-
-        var ctr = document.getElementById('ramChart').getContext('2d');
-        var ramChart = new Chart(ctr, {
-            type: 'doughnut',
-            data: {
-                labels: ["In use", "idle"],
-                datasets: [
-                    {
-                        data: [<%= 100 - Math.round(freemem) %>, <%= Math.round(freemem) %>],
-                        backgroundColor: ["#F7464A", "#85e085"],
-                        hoverBackgroundColor: ["#FF5A5E", "#5cd65c"]
-                    }
-                ]
-            },
-            options: {
-                responsive: true
-            }
-        });
+       
     </script>
     <!--insert Chart Code-->
 

@@ -1,11 +1,15 @@
 var bcrypt = require('bcryptjs');
 var Organisation = require('../../shared/models/organisation');
+var OrganisationConfirm = require('../../shared/models/organisationConfirm');
 
 const hashRounds = 10;
 
 exports.get_organisation_detail = function(req, res, next){
     if(req.user){
-        res.render('detail');
+        OrganisationConfirm.findById(req.params.id, function(err, oc){
+            if (err) return next(err);
+            res.render('detail', {organisation : oc});
+        });
     } else {
         res.redirect('/login');
     }
@@ -13,7 +17,11 @@ exports.get_organisation_detail = function(req, res, next){
 
 exports.get_organisation_list = function(req, res, next){
     if(req.user){
-        res.render('list');
+        OrganisationConfirm.find(function(err, orgs){
+            console.log(orgs);
+            if (err) return next(err);
+            res.render('list', {organisations : orgs});
+        });
     } else {
         res.redirect('/login');
     }

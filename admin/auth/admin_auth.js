@@ -16,11 +16,11 @@ passport.use(
         {
             // using custom field names
             usernameField: 'user',
-            passwordField: 'pass'
+            passwordField: 'pass',
+            passReqToCallback: true
         },
         // login method
-        function (username, password, cb) {
-            console.log("auth");
+        function (req ,username, password, cb) {
             if (username === user.username && bcrypt.compareSync(password.toString(), user.password)) {
                 return cb(null, user);
  
