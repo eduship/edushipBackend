@@ -11,7 +11,7 @@ var EventSchema = new Schema(
     time: {type: String, required: false, max: 100},
     description: {type: String, required: false, max: 10000},
     link: {type: String, required: false, max: 400},
-    level: {type: String, required: false, max: 20},
+    level: {type: Number, required: false, max: 20},
     costs: {type: String, required: false, max: 40},
     approach : {type: String, required: false, max: 40},
     hotel : {type: String, required: false, max: 40},

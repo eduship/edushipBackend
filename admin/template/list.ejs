@@ -142,17 +142,21 @@
                                 </thead>
                                 <tbody>
                                     <% for(var i=0; i<organisations.length; i++){ %>
-                                        <td><%= i + 1 %></td>
-                                        <td>organisations[i].name</td>
-                                        <td>organisations[i].email</td>
-                                        <td><a href="/detail/<%= organisations[i].id %>">DETAIL</a></td>
-                                        <td>
-                                            <form method="post" action="/confirm/<%= organisations[i].id %>">
-                                                <input type="hidden" name="name" value="<%= organisations[i].name %>">
-                                                <input type="hidden" name="email" value="<%= organisations[i].email %>">
-                                                <input type="submit" value="Confirm">
-                                            </form>
-                                        </td>
+                                        <tr>
+                                            <td><%= i + 1 %></td>
+                                            <td><%= organisations[i].name %></td>
+                                            <td><%= organisations[i].email %></td>
+                                            <td><a href="/detail/<%= organisations[i].id %>" style="color:blue">DETAIL</a></td>
+                                            <td>
+                                                <form method="post" action="/confirm/<%= organisations[i].id %>">
+                                                    <input type="hidden" name="name" value="<%= organisations[i].name %>">
+                                                    <input type="hidden" name="email" value="<%= organisations[i].email %>">
+                                                    <input type="hidden" name="password" value="<%= organisations[i].password %>">
+                                                    <input type="hidden" name="id" value="<%= organisations[i].id %>">
+                                                    <input type="submit" value="Confirm" style="border:none">
+                                                </form>
+                                            </td>
+                                        </tr>    
                                     <% } %>
                                 </tbody>
                             </table>                     

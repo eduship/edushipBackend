@@ -30,11 +30,11 @@ mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { us
   .then(() =>  console.log('connection succesful server started on port 7000'))
   .catch((err) => console.error(err));
 
-//setup view engine 
+//setup view engine
 app.set('views', path.join(__dirname, 'template'));
 app.set('view engine', 'ejs');
 
-//Setup the standard stuff  
+//Setup the standard stuff
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -80,7 +80,7 @@ app.post('/login',
 app.use(function(req, res, next) {
     next(createError(404));
   });
-  
+
   // error handler
   app.use(function(err, req, res, next) {
     // set locals, only providing error in development
@@ -92,5 +92,5 @@ app.use(function(req, res, next) {
     res.status(err.status || 500);
     res.sendFile(path.join(__dirname, '../shared/error.html'));
   });
-  
+
   module.exports = app;

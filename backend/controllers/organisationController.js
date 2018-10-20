@@ -1,6 +1,9 @@
 var OrganisationConfirm = require('../../shared/models/organisationConfirm');
 var Event = require('../../shared/models/event');
 var Organisation = require('../../shared/models/organisation');
+var bcrypt = require('bcryptjs');
+
+const saltRounds = 10;
 
 //get Home if User is logged in
 exports.get_home = function(req, res, next){
@@ -35,10 +38,18 @@ exports.post_register_organisation = function(req, res, next){
     if(req.user){
         res.redirect('/');
     } else {
-        //create OrganisationConfirm Object
-        var conf = new OrganisationConfirm(req.body);
 
-        console.log(conf);
+        //gen Password hash
+        var password_hash = bcrypt.hashSync(req.body.password, saltRounds);
+
+        //create OrganisationConfirm Object
+        var conf = new OrganisationConfirm({
+            name: req.body.name,
+            email: req.body.email,
+            link: req.body.link,
+            password: password_hash,
+            description: req.body.description
+        });
 
         //save OC Object
         conf.save(function(err){

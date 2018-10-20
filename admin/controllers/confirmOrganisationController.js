@@ -1,8 +1,5 @@
-var bcrypt = require('bcryptjs');
 var Organisation = require('../../shared/models/organisation');
 var OrganisationConfirm = require('../../shared/models/organisationConfirm');
-
-const hashRounds = 10;
 
 exports.get_organisation_detail = function(req, res, next){
     if(req.user){
@@ -17,8 +14,7 @@ exports.get_organisation_detail = function(req, res, next){
 
 exports.get_organisation_list = function(req, res, next){
     if(req.user){
-        OrganisationConfirm.find(function(err, orgs){
-            console.log(orgs);
+        OrganisationConfirm.find({}, function(err, orgs){
             if (err) return next(err);
             res.render('list', {organisations : orgs});
         });
@@ -28,17 +24,21 @@ exports.get_organisation_list = function(req, res, next){
 }
 
 exports.post_confirm_organisation = function(req, res, next){
-    //generate password hash
-    var password_hash = bcrypt.hashSync(req.params.password, hashRounds);
     
     var organisation = new Organisation({
-        name: req.params.name,
-        hash: password_hash,
-        email: req.params.email,
+        name: req.body.name,
+        hash: req.body.password,
+        email: req.body.email,
         events: []
     });
 
-    Organisation.create(organisation, function(req, res, next){
+    Organisation.create(organisation, function(err){
         if (err) return next(err);
     });
+
+    OrganisationConfirm.findByIdAndDelete(req.body.id, function(err){
+        if(err) return next(err);
+    });
+
+    res.redirect('/list');
 }
