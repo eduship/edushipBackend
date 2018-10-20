@@ -3,6 +3,11 @@ var router = express.Router();
 
 var read_controller = require('../controllers/readController');
 
+router.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
 /*Event Routes*/
 
 //GET List of all events
