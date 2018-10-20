@@ -42,3 +42,11 @@ exports.post_confirm_organisation = function(req, res, next){
 
     res.redirect('/list');
 }
+
+exports.post_delete_organisation = function(req, res, next){
+    OrganisationConfirm.findByIdAndDelete(req.params.id, function(err){
+        if(err) return next(err);
+    });
+
+    res.redirect('/list');
+}
