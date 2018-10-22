@@ -2,7 +2,6 @@ var passport = require('passport')
 var Strategy = require('passport-local').Strategy;
 var bcrypt = require('bcryptjs');
 var Organisation = require('../../shared/models/organisation');
-const saltRounds = 10;
 
 // using the local strategy with passport
 passport.use(
@@ -13,8 +12,8 @@ passport.use(
             passwordField: 'pass'
         },
         // login method
-        function (username, password, cb) {
-            Organisation.findOne({'email': username}, function(err, organisation) {
+        function (email, password, cb) {
+            Organisation.findOne({'email': email}, function(err, organisation) {
                 if (err) {return cb(err);}
                 if(bcrypt.compareSync(password.toString(), organisation.hash)){
                     return cb(null, organisation);
@@ -31,7 +30,6 @@ passport.serializeUser(function (user, cb) {
  
 passport.deserializeUser(function (id, cb) {
     Organisation.findById(id)
-    .populate('events')
     .exec(function(err, res){
         return cb(null, res);
     });

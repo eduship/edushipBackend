@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var uuidv1 = require('uuidv1');
 
 var Schema = mongoose.Schema;
 
@@ -7,6 +8,7 @@ var OrganisationSchema = new Schema(
     name: {type: String, required: true, max: 100},
     hash: {type: String, required: true, max: 100},
     email: {type: String, required: true, max: 50},
+    isAdmin: {type: Boolean, required: true, default: false},
     events: [{type: Schema.Types.ObjectId, ref: 'Event'}]
   }, {
   toObject: {

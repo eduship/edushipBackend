@@ -9,11 +9,11 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Material Design Bootstrap -->
-    <link href="../css/mdb.min.css" rel="stylesheet">
+    <link href="css/mdb.min.css" rel="stylesheet">
     <!-- Your custom styles (optional) -->
-    <link href="../css/style.min.css" rel="stylesheet">
+    <link href="css/style.min.css" rel="stylesheet">
 </head>
 
 <body class="grey lighten-3">
@@ -127,23 +127,12 @@
                 
                         <!-- Card header -->
                         <div class="card-header text-center">
-                            ID: <%= organisation.id %>
+                            Service Uptime
                         </div>
                 
                         <!--Card content-->
                         <div class="card-body">
-                            <p><b>Name:</b> <%= organisation.name %></p>
-                            <p><b>Email:</b> <%= organisation.email %></p>
-                            <p><b>Link:</b> <a href='<%= organisation.link %>' target="_blank"><%= organisation.link %></a></p>
-                            <p><b>Description:</b> <%= organisation.description%></p>
-                            <form method="post" action="/confirm/<%= organisation.id %>">
-                                <input type="hidden" name="name" value="<%= organisation.name %>">
-                                <input type="hidden" name="email" value="<%= organisation.email %>">
-                                <input type="hidden" name="password" value="<%= organisation.password %>">
-                                <input type="hidden" name="id" value="<%= organisation.id %>">
-                                <input type="submit" value="Confirm" style="border:none">
-                            </form>
-                            <a href="./delete/<%= organisation.id %>">DELETE</a>
+                            <h4 class="text-center"><%= parseInt(processUptime/(3600*24)) %> Days <%= parseInt((processUptime/3600) % 24) %> Hours <%= parseInt((processUptime/60) % 60) %> Minutes <%= parseInt(processUptime % 60) %> Seconds</h4>
                         </div>
                             
                     </div>
@@ -223,13 +212,13 @@
 
     <!-- SCRIPTS -->
     <!-- JQuery -->
-    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
     <!-- Bootstrap tooltips -->
-    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <script type="text/javascript" src="js/popper.min.js"></script>
     <!-- Bootstrap core JavaScript -->
-    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
     <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="../js/mdb.min.js"></script>
+    <script type="text/javascript" src="js/mdb.min.js"></script>
     <!-- Initializations -->
     <script type="text/javascript">
         // Animations initialization
