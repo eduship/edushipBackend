@@ -16,19 +16,20 @@ exports.post_create_organisation = function(req, res, next){
 }
 
 //Update organisation by Id
-exports.update_organisation_by_id = function(req, res, next){
-    if(req.user.id == req.params.id){
-        var newOrg = new Organisation(req.body);
-        Organisation.findByIdAndUpdate(req.params.id, newOrg, function(err){
-            if (err) return next(next);
+exports.update_organisation= function(req, res, next){
+    if(req.user){
+        if(req.user.isAdmin == false){req.body.isAdmin = false} else{req.body.isAdmin = true} ;
+        Organisation.findByIdAndUpdate(req.user.id, req.body, function(err, no){
+            if (err) return next(err);
+            res.json(no);
         });
-        res.json(newOrg);
+        
     } else {
         res.send({ "error" : "missing credentials"});
     }
 }
 
-//Delte Organisation by Id
+//Delete Organisation by Id
 exports.delte_organisation_by_id = function(req, res, next){
     if(req.user.isAdmin){
         Organisation.findByIdAndDelete(req.params.id, function(err){
@@ -62,15 +63,20 @@ exports.post_create_event = function(req, res, next){
 
 //Update Event
 exports.update_event_by_id = function(req, res, next){
-    if(req.user.id == req.body.organisation){
-        var newEv = new Event(req.body);
-        newEv.save(function(err){
-            if (err) return next(err);
+    if(req.user){
+        Event.findById(req.params.id, function(err, event){
+            if(err) return next(err);
+
+            if(event.organisation == req.user.id){
+                var newEv = new Event(req.body);
+                newEv.save(function(err){
+                    if (err) return next(err);
+                });
+                res.json(newEv);
+            }
         });
-        res.json(newEv);
-    } else {
-        res.send({"error" : "missing credentials"});
     }
+    res.send({"error" : "missing credentials"});
 }
 
 //Delete Event

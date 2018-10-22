@@ -24,9 +24,9 @@ exports.get_event_by_id = function(req, res, next) {
 
 //List of all Organisations
 exports.get_organisation_list = function(req, res, next){
-    Organisation.find()
+    Organisation.find({isAdmin: false})
     .select('-hash')    //exclude hash from output
-    .select('-isAdmin') //exclude isAdmin to leak less information
+    .select('-isAdmin')
     .exec(function(err, organisations){
         if(err) return next(err); 
         res.json(organisations);
@@ -35,9 +35,9 @@ exports.get_organisation_list = function(req, res, next){
 
 //Find Organisation by ID
 exports.get_organisation_by_id = function(req, res, next){
-    Organisation.findById(req.params.id)
+    Organisation.find({_id: req.params.id, isAdmin: false})
     .select('-hash')                    //exclude hash from output
-    .select('-isAdmin')                 //exclude isAdmin to leak less information
+    .select('-isAdmin')
     .exec(function(err, organisation){
         if(err) return next(err);
         res.json(organisation);
@@ -71,11 +71,11 @@ exports.get_confirmOrganisation_list = function(req, res, next){
 //Find confirmOrganisation by ID
 exports.get_confirmOrganisation_by_id = function(req, res, next){
     if(req.user.isAdmin){
-        confirmOrganisation.findById(function(err, corg){
+        confirmOrganisation.findById(req.params.id, function(err, corg){
             if(err) return next(err);
-            res.json(corg);
+                res.json(corg);
         });
     } else {
         res.send({  "error": "missing credentials" });
-    }
+    }  
 }

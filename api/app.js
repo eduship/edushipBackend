@@ -26,7 +26,7 @@ function onError(error) {
 //Setup Database
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { useMongoClient: true, promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', {promiseLibrary: require('bluebird'), useNewUrlParser: true })
   .then(() =>  console.log('connection succesful server started on port 4000'))
   .catch((err) => console.error(err));
 
@@ -68,12 +68,14 @@ app.post('/login',
     auth.authenticate('local', {
         // redirect back to /login
         // if login fails
-        failureRedirect: '/login'
+        failureFlash: false,
+        successMessage: false,
+        failureRedirect: '/event/all'
     }),
  
     // end up at / if login works
     function (req, res) {
-        res.redirect('/');
+        res.send({"loggedIn": true});
     }
 );
 
