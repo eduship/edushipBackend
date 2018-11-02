@@ -7,7 +7,7 @@ var EventSchema = new Schema(
     name: {type: String, required: true, max: 100},
     date: {type: String, required: true, max: 20},
     organisation: {type: String, required: true, max: 100},
-    //organisation: {type: Schema.Types.ObjectId, ref:'Organisation', required: true},
+    organisationID: {type: Schema.Types.ObjectId, ref:'Organisation', required: true},
     placeAdress: {type: String, required: false, max: 100},
     time: {type: String, required: false, max: 100},
     description: {type: String, required: false, max: 10000},

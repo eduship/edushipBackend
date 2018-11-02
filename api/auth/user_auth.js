@@ -15,13 +15,15 @@ passport.use(
         function (email, password, cb) {
             Organisation.findOne({'email': email}, function(err, organisation) {
                 if (err) {return cb(err);}
-                if(bcrypt.compareSync(password.toString(), organisation.hash)){
-                    return cb(null, organisation);
-                } else {
-                    return cb(null, false);
-                }
+                try{
+                    if(bcrypt.compareSync(password.toString(), organisation.hash)){
+                        return cb(null, organisation);
+                    } else {
+                        return cb(null, false);
+                    }
+                } catch(TypeError){return cb(null, false)}
             });
-       }
+        }
 ));
 
 passport.serializeUser(function (user, cb) {

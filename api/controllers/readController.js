@@ -58,24 +58,16 @@ exports.get_organisation_events = function(req, res, next){
 
 //List of all confirmOrganisations
 exports.get_confirmOrganisation_list = function(req, res, next){
-    if(req.user.isAdmin){
-        confirmOrganisation.find(function(err, corgs){
-            if(err) return next(err);
-            res.json(corgs);
-        });
-    } else {
-        res.send({  "error": "missing credentials" });
-    }
+    confirmOrganisation.find(function(err, corgs){
+        if(err) return next(err);
+        res.json(corgs);
+    });
 }
 
 //Find confirmOrganisation by ID
 exports.get_confirmOrganisation_by_id = function(req, res, next){
-    if(req.user.isAdmin){
-        confirmOrganisation.findById(req.params.id, function(err, corg){
-            if(err) return next(err);
-                res.json(corg);
-        });
-    } else {
-        res.send({  "error": "missing credentials" });
-    }  
+    confirmOrganisation.findById(req.params.id, function(err, corg){
+        if(err) return next(err);
+            res.json(corg);
+    });
 }
