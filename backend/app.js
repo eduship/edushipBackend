@@ -6,6 +6,8 @@ var logger = require('morgan');
 var http = require('http');
 var session = require('express-session');
 var auth = require('./auth/user_auth.js');
+// Load enviroment vars
+require('dotenv').load();
 
 var backendRouter = require('./routes/backendRouter');
 
@@ -26,7 +28,7 @@ function onError(error) {
 //Setup Database
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { useMongoClient: true, promiseLibrary: require('bluebird') })
+mongoose.connect(process.env.MONGO_URL, { useMongoClient: true, promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful server started on port 7000'))
   .catch((err) => console.error(err));
 
@@ -46,7 +48,7 @@ app.use(express.static(path.join(__dirname, 'template')));
 app.use(session(
   {
     name: 'Sz1QakKaWD',
-    secret: 'E58§HNiVoC&wGZxYh4JqR/Hh90§)CBaM6§PM9cpu',
+    secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: false,
     cookie: {
@@ -69,7 +71,7 @@ app.post('/login',
         // if login fails
         failureRedirect: '/login'
     }),
- 
+
     // end up at / if login works
     function (req, res) {
         res.redirect('/');
@@ -87,7 +89,7 @@ app.use(function(req, res, next) {
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     console.log(err);
-  
+
     // render the error page
     res.status(err.status || 500);
     res.sendFile(path.join(__dirname, '../shared/error.html'));
