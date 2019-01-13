@@ -26,7 +26,7 @@ function onError(error) {
 //Setup Database
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect(process.env.MONGO_URL, { useMongoClient: true, promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://test:9347ztg83fhi@ds159459.mlab.com:59459/puk', { promiseLibrary: require('bluebird') })
   .then(() =>  console.log('connection succesful server started on port 5000'))
   .catch((err) => console.error(err));
 
