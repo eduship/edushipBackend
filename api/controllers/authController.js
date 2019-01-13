@@ -1,6 +1,6 @@
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
-var User = require('../../shared/models/user');
+var User = require('../../shared/models/organisation');
 var config = require('../config');
 
 //function to login the user
