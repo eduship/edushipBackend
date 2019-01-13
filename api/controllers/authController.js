@@ -6,7 +6,7 @@ var config = require('../config');
 //function to login the user
 exports.login = (req, res, next) => {
     //check if one User with given username exists
-    User.findOne({username: req.body.username}, (err, user) => {
+    User.findOne({email: req.body.email}, (err, user) => {
         if(err) return next(err);
         if(user){
             //check password
