@@ -15,7 +15,6 @@ if(isset($_GET["email"]) && $_GET["email"] != "") {
                 </title>
             </head>
             <body>
-                <p style="font-size: 0.9em">E-Mail-Newsletter <a href="http://eduship.kaiseritea.de/deabomail.php?email='.str_replace( "@", "(at)", $row["email"]).'">hier</a> deabonieren.</p>
                 <h1>Herzlich Willkommen!</h1>
                 <h4>Du bist jetzt im Newsletter zu <a href="https://eduship.de">eduship.de</a> angemeldet. </h4>
                 <p>Du erhälst ab sofort die neusten und wichtigsten Updates rund um das eduship-Projekt. <br />

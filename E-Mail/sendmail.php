@@ -14,7 +14,7 @@ if(isset($_GET["nachricht"]) && $_GET["nachricht"] != "") {
                 </title>
             </head>
             <body>
-            <p style="font-size: 0.9em">E-Mail-Newsletter <a href="http://eduship.kaiseritea.de/deabomail.php?emailid='.$row["id"].'">hier</a> deabonieren.</p>
+            <p style="font-size: 0.9em">E-Mail-Newsletter <a href="https://kaiseritea.de/eduship/deabomail.php?emailid='.$row["id"].'">hier</a> deabonieren.</p>
             '.$_GET["nachricht"].'
             </body>
         </html>
